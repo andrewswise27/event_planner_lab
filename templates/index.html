@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Event Planner</title>
+</head>
+<body>
+    <header>
+        <h1>Event Planner!</h1>
+    </header>
+    <main>
+        <ul>
+        {% for event in events %}
+            <li>
+                <b>Event Name: </b>{{ event.event_name }} &nbsp; <b>Event Date: </b> {{ event.date }} &nbsp; <b>Number of Guests: </b> {{ event.guests_num }} &nbsp; <b>Event Location: </b> {{ event.room_loc }} &nbsp; <b>Description: </b> {{ event.description }} &nbsp; <b> Recurring Event?: </b> {{ event.recurring }}
+            </li>
+            <br>
+            <br>
+        {% endfor %}
+        </ul>
+        <div class="input-form">
+            <form action="/events" method="post">
+                <label for="">Event Name: </label>
+                <input type="text" id="input-event" name="event-name"   required placeholder="Event Name">
+                <br>
+                <label for="">Date: </label>
+                <input type="date" id="date-picker" name="event-date">
+                <br>
+                <label for="">Number of Guests: </label>
+                <input type="text" id="num-of-guests" name="num-guests" required placeholder="Number of Guests">
+                <br>
+                <label for="">Event Location: </label>
+                <input type="text" id="input-location"  name="event-location" required placeholder="Location">
+                <br>
+                <label for="">Event Decription: </label>
+                <textarea id="description-event" name="description" cols="30" rows="10" required placeholder="Brief description of your event!"></textarea>
+                <br>
+                <label for="">Is this event recurring?</label>
+                <input type="checkbox"  name="input-checkbox" id="checkbox-input" value="True">
+                <br>
+                <button>Submit Event</button>
+            </form>
+
+        </div>
+
+    </main>
+</body>
+</html>
